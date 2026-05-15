@@ -1,4 +1,4 @@
-﻿'use strict';
+'use strict';
 
   /* --- Sticky header shadow --- */
   const hdr = document.getElementById('site-header');
@@ -49,22 +49,6 @@
 
   document.querySelectorAll('.rev').forEach(el => revIO.observe(el));
 
-  /* --- Hero animation replay (hommage au GIF) --- */
-  const replayBtn  = document.getElementById('replayBtn');
-  const heroBody   = document.querySelector('.hero-body');
-  const heroDecoDivs = document.querySelectorAll('.hdl, .ink-rule');
-
-  replayBtn.addEventListener('click', () => {
-    // Reset et rejoue toutes les animations CSS du héros
-    const targets = heroBody.querySelectorAll(
-      '.hero-pre, .hero-title, .hero-rule, .hero-sub, .hero-actions, .hdl'
-    );
-    [...targets, ...heroDecoDivs].forEach(el => {
-      el.style.animation = 'none';
-      void el.offsetWidth; // reflow
-      el.style.animation = '';
-    });
-  });
 
   /* --- Slideshow vanilla --- */
   function initSlideshow(id, ms = 4000) {
