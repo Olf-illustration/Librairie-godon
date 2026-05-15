@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
@@ -9,7 +9,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
 </head>
@@ -36,20 +36,13 @@
 
     <div class="h-center">
       <a href="#" class="site-logo" aria-label="Librairie Godon — accueil">
-        <div class="logo-name">Librairie<br>Godon</div>
-        <span class="logo-sub">Livres anciens &amp; modernes · Lille</span>
+        <img src="images/logo-godon.png" alt="Logo Godon" class="header-logo">
+        <div class="logo-name">Librairie Godon</div>
       </a>
     </div>
 
     <div class="h-right">
-      <div class="phone">
-        <a href="tel:+33688222266">T : 06.88.22.22.66</a>
-      </div>
       <div class="h-lang">
-        <a href="#" class="on" aria-current="true">FR</a>
-        <span class="sep">·</span>
-        <a href="#">EN</a>
-        <span class="sep">|</span>
         <button id="nlOpenBtn" class="nl-trigger">NEWSLETTER</button>
       </div>
     </div>
@@ -72,39 +65,10 @@
      HERO — Animation à l'encre (hommage au GIF original)
 ====================================================== -->
 <section id="hero" aria-label="Page d'accueil animée">
-  <div class="hero-glow"  aria-hidden="true"></div>
-  <div class="hero-grain" aria-hidden="true"></div>
-  <div class="ink-deco"   aria-hidden="true">
-    <div class="ink-rule"></div>
-    <div class="ink-rule"></div>
+  <div class="hero-animation-bg">
+    <!-- Placez votre fichier d'animation ici (ex: gif, webp ou mp4) -->
+    <img src="images/animation-hero.gif" alt="Animation Librairie Godon">
   </div>
-
-  <div class="hero-body">
-    <div class="hero-deco-lines" aria-hidden="true">
-      <div class="hdl hdl-1"></div>
-      <div class="hdl hdl-2"></div>
-      <div class="hdl hdl-3"></div>
-    </div>
-    <p class="hero-pre">Librairie ancienne établie à Lille depuis 1987</p>
-    <h2 class="hero-title">Godon</h2>
-    <div class="hero-rule"></div>
-    <p class="hero-sub">
-      Livres anciens &amp; modernes &nbsp;·&nbsp; Gravures &nbsp;·&nbsp; Cartographies<br>
-      Éditions originales &nbsp;·&nbsp; Bibliophilie
-    </p>
-    <div class="hero-actions">
-      <a href="#librairie" class="btn btn-gold">Découvrir la librairie</a>
-      <a href="#contact"   class="btn btn-ghost">Prendre rendez-vous</a>
-    </div>
-  </div>
-
-  <button class="replay-btn" id="replayBtn" aria-label="Rejouer l'animation">
-    <svg width="11" height="11" viewBox="0 0 11 11" fill="currentColor" aria-hidden="true">
-      <path d="M5.5 0a5.5 5.5 0 1 0 4.33 2.1L8.7 3.22A4 4 0 1 1 5.5 1.5V0z"/>
-      <path d="M5.5 0l2.5 2.5H5.5V0z"/>
-    </svg>
-    Rejouer l'animation
-  </button>
 </section>
 
 <!-- ======================================================
@@ -219,7 +183,7 @@
           <div class="pub-cover">
             <div class="pub-cover-inner"><span>L'Amusement<br>d'un Lillois</span></div>
           </div>
-          <span class="pub-freq">1 fois par an</span>
+          <span class="pub-freq">3 numéros par an</span>
           <h4>L'Amusement d'un Lillois</h4>
           <p>Catalogue de vente par correspondance consacré à nos dernières acquisitions — livres anciens, éditions originales, gravures et cartographies. Envoyé gratuitement sur simple demande.</p>
         </div>
