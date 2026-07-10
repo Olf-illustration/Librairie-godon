@@ -24,7 +24,7 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; font-size: 16px; }
+    html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
 
     body {
       font-family: var(--font-body);
@@ -32,6 +32,7 @@
       line-height: 1.75;
       color: var(--ink);
       background: var(--cream);
+      overflow-x: hidden;
     }
 
     img { max-width: 100%; height: auto; display: block; }
