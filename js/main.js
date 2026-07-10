@@ -1,285 +1,142 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Librairie Godon — Livres Anciens · Lille</title>
-  <meta name="description" content="Achat, vente, expertise. Livres anciens et modernes, gravures, cartographies, éditions originales. Vieux Lille. Sur rendez-vous.">
-  <meta name="keywords" content="livre ancien, lille, librairie, bibliophilie, expertise, gravure, cartographie, manuscrit, édition originale, slam, lila">
+'use strict';
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  /* --- Sticky header shadow --- */
+  const hdr = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    hdr.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
 
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+  /* --- Mobile nav toggle --- */
+  const burger   = document.querySelector('.nav-burger');
+  const navWrap  = document.getElementById('nav-links');
 
-<a href="#contenu" class="skip">Aller au contenu</a>
+  burger.addEventListener('click', () => {
+    const open = navWrap.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+  });
+  navWrap.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      navWrap.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
 
-<!-- ======================================================
-     HEADER
-====================================================== -->
-<header id="site-header" role="banner">
-  <div class="header-top">
+  /* --- Active nav highlight on scroll --- */
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('section[id]');
 
-    <div class="h-left">
-      <div class="h-logos">
-        <a href="http://www.slam-livre.fr" target="_blank" rel="noopener" title="SLAM">
-          <img src="https://www.librairiegodon.com/images/slam.png" alt="SLAM">
-        </a>
-        <a href="http://www.ilab.org" target="_blank" rel="noopener" title="LILA">
-          <img src="https://www.librairiegodon.com/images/lila.png" alt="LILA">
-        </a>
-      </div>
-    </div>
+  const navIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('on'));
+        const hit = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+        if (hit) hit.classList.add('on');
+      }
+    });
+  }, { threshold: 0.35 });
 
-    <div class="h-center">
-      <a href="#" class="site-logo" aria-label="Librairie Godon — accueil">
-        <img src="images/logo-godon.png" alt="Logo Godon" class="header-logo">
-        <div class="logo-name">Librairie Godon</div>
-      </a>
-    </div>
+  sections.forEach(s => navIO.observe(s));
 
-    <div class="h-right">
-      <div class="h-lang">
-        <button id="nlOpenBtn" class="nl-trigger">NEWSLETTER</button>
-      </div>
-    </div>
+  /* --- Scroll reveal --- */
+  const revIO = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('vis');
+        revIO.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  </div><!-- /header-top -->
-
-  <nav id="main-nav" aria-label="Navigation principale">
-    <button class="nav-burger" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-    <div class="nav-wrap" id="nav-links">
-      <a href="#librairie"  class="nav-link">La Librairie</a>
-      <a href="#actualites" class="nav-link">Nos Catalogues</a>
-      <a href="#contact"    class="nav-link">Contact</a>
-    </div>
-  </nav>
-</header>
-
-<!-- ======================================================
-     HERO — Animation à l'encre (hommage au GIF original)
-====================================================== -->
-<section id="hero" aria-label="Page d'accueil">
-  <div class="hero-animation-bg">
-    <img src="images/hero-image.jpg" alt="Librairie Godon">
-  </div>
-</section>
-
-<!-- ======================================================
-     MAIN CONTENT
-====================================================== -->
-<main id="contenu">
-
-  <!-- ---- LA LIBRAIRIE ---- -->
-  <section id="librairie" class="sec" aria-labelledby="lib-title">
-    <div class="inner">
-
-      <div class="sec-head rev">
-        <span class="sec-label">Depuis 1987</span>
-        <h2 class="sec-title" id="lib-title">La Librairie</h2>
-      </div>
-
-      <div class="lib-grid">
-
-        <!-- Photo de la librairie -->
-        <div class="slideshow rev rev-d1" id="libShow" aria-label="Photo de la librairie">
-          <div class="slide on" role="img" aria-label="Intérieur de la Librairie Godon">
-            <img src="images/librairie-photo.jpg" alt="Librairie Godon — livres anciens Lille">
-          </div>
-        </div><!-- /photo -->
-
-        <!-- Texte -->
-        <div class="lib-text rev rev-d2">
-          <h3>Sylviane &amp; Jérôme Godon</h3>
-
-          <p>Fondée en 1987, la Librairie Godon était installée à Lille, d'abord rue Sainte-Anne, puis rue de la Barre jusqu'en 1997, pour arriver ensuite <strong>rue Masurel</strong>, au cœur du vieux Lille, à deux pas de la cathédrale Notre-Dame de la Treille.</p>
-
-          <p>La librairie a fermé définitivement en juin 2024. <strong>Nous sommes toujours en activité</strong> sur la métropole Lilloise mais <strong>nous recevons maintenant uniquement sur rendez-vous.</strong></p>
-
-          <p>Nous éditons une fois par an le catalogue <em>«&nbsp;L'Amusement d'un Lillois&nbsp;»</em>, envoyé gratuitement sur demande, et le catalogue <em>«&nbsp;Le Non Livre&nbsp;»</em>, consacré aux documents éphémères, qui paraît quant à lui tous les deux ou trois ans.</p>
-
-          <p><strong>Nous publions deux fois par mois une petite liste d’une dizaine de livres et documents sous le format d’une newsletter que vous êtes libres de rejoindre.</strong><br>
-          Nous participons à Paris, en février et octobre, au salon Bibliomania.</p>
-        </div>
-
-      </div><!-- /lib-grid -->
-
-      <!-- Membres -->
-      <div class="members">
-        <div class="member-card rev rev-d1">
-          <a href="http://www.slam-livre.fr" target="_blank" rel="noopener">
-            <img src="https://www.librairiegodon.com/images/slam.png" alt="SLAM">
-          </a>
-          <p>Membre du <strong>Syndicat de la Librairie Ancienne et Moderne</strong>.<br>Jérôme Godon, vice-président 2006–2009.</p>
-        </div>
-        <div class="member-card rev rev-d2">
-          <a href="http://www.ilab.org" target="_blank" rel="noopener">
-            <img src="https://www.librairiegodon.com/images/lila.png" alt="LILA">
-          </a>
-          <p>Membre de la <strong>Ligue Internationale de la Librairie Ancienne</strong>.<br>Réseau mondial de libraires de premier plan.</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
+  document.querySelectorAll('.rev').forEach(el => revIO.observe(el));
 
 
-  <!-- ---- NOS CATALOGUES ---- -->
-  <section id="actualites" class="sec" aria-labelledby="actu-title">
-    <div class="inner">
-      <div class="sec-head rev">
-        <span class="sec-label">Publications</span>
-        <h2 class="sec-title" id="actu-title">Nos Catalogues</h2>
-      </div>
+  /* --- Slideshow vanilla --- */
+  function initSlideshow(id, ms = 4000) {
+    const wrap   = document.getElementById(id);
+    if (!wrap) return;
+    const slides = [...wrap.querySelectorAll('.slide')];
+    if (slides.length < 2) return;
 
-      <div class="pub-cards">
+    let cur = 0;
+    // Si les images réelles chargent, remplacer le placeholder
+    slides.slice(1).forEach(s => {
+      const img = s.querySelector('img');
+      if (img) {
+        img.addEventListener('load', () => {
+          // Cacher le premier slide placeholder une fois les vraies images dispo
+          if (slides[0].querySelector('.slide-ph')) {
+            slides[0].classList.remove('on');
+            slides[1].classList.add('on');
+            cur = 1;
+          }
+        }, { once: true });
+      }
+    });
 
-        <div class="pub-card rev rev-d1">
-          <div class="pub-cover">
-            <div class="pub-cover-inner"><span>L'Amusement<br>d'un Lillois</span></div>
-          </div>
-          <span class="pub-freq">1 numéro par an</span>
-          <h4>L'Amusement d'un Lillois</h4>
-          <p>Catalogue de vente par correspondance consacré à nos dernières acquisitions — bibliophilie, éditions originales, gravures et cartographies. Envoyé gratuitement sur simple demande.</p>
-        </div>
+    setInterval(() => {
+      slides[cur].classList.remove('on');
+      cur = (cur + 1) % slides.length;
+      slides[cur].classList.add('on');
+    }, ms);
+  }
 
-        <div class="pub-card rev rev-d2">
-          <div class="pub-cover">
-            <div class="pub-cover-inner"><span>Le<br>Non Livre</span></div>
-          </div>
-          <span class="pub-freq">Tous les 2 ou 3 ans</span>
-          <h4>Le Non Livre</h4>
-          <p>Catalogue entièrement consacré aux documents éphémères — affiches, menus, faire-parts, imagerie populaire et papiers anciens. Une publication unique en son genre.</p>
-        </div>
+  initSlideshow('libShow', 4000);
 
-      </div>
+  /* --- Newsletter popup --- */
+  const nlOverlay  = document.getElementById('nlOverlay');
+  const nlOpenBtn  = document.getElementById('nlOpenBtn');
+  const nlCloseBtn = document.getElementById('nlCloseBtn');
+  const nlForm     = document.getElementById('nlForm');
+  const nlFormWrap = document.getElementById('nlFormWrap');
+  const nlSuccess  = document.getElementById('nlSuccess');
 
-      <div class="subscribe-block rev">
-        <p>Recevez nos catalogues gratuitement — inscrivez-vous à notre <em>newsletter bimestrielle</em></p>
-        <div class="subscribe-form">
-          <a href="mailto:librairie.godon@gmail.com?subject=Inscription newsletter" class="btn btn-gold">S'inscrire →</a>
-        </div>
-      </div>
+  function openNl() {
+    nlOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => nlForm.querySelector('input').focus(), 80);
+  }
+  function closeNl() {
+    nlOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
 
-    </div>
-  </section>
+  nlOpenBtn.addEventListener('click', openNl);
+  nlCloseBtn.addEventListener('click', closeNl);
 
-</main>
+  // Fermer en cliquant sur le fond
+  nlOverlay.addEventListener('click', e => { if (e.target === nlOverlay) closeNl(); });
 
-  <!-- ---- CONTACT ---- -->
-  <section id="contact" class="sec" aria-labelledby="contact-title">
-    <div class="inner">
+  // Fermer avec Échap
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNl(); });
 
-      <div class="sec-head rev">
-        <span class="sec-label">Nous joindre</span>
-        <h2 class="sec-title" id="contact-title">Contact</h2>
-      </div>
+  // Soumission popup newsletter
+  nlForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const email = nlForm.querySelector('input[type="email"]').value.trim();
+    if (!email) return;
+    // Ouvre le client mail avec l'email pré-rempli
+    const subject = encodeURIComponent('Inscription Newsletter — Librairie Godon');
+    const body    = encodeURIComponent('Bonjour,\n\nJe souhaite m\'inscrire à la newsletter bimestrielle de la Librairie Godon.\n\nMon adresse e-mail : ' + email + '\n\nCordialement.');
+    window.location.href = 'mailto:contact@librairiegodon.com?subject=' + subject + '&body=' + body;
+    // Affiche le message de confirmation
+    nlFormWrap.style.display = 'none';
+    nlSuccess.style.display  = 'block';
+    setTimeout(closeNl, 3200);
+  });
 
-      <div class="contact-grid">
-
-        <!-- Infos -->
-        <div class="contact-info rev">
-          <h3>Librairie Godon</h3>
-
-          <div class="c-row">
-            <span class="c-icon" aria-hidden="true">☎</span>
-            <div><a href="tel:+33688222266">06&nbsp;88&nbsp;22&nbsp;22&nbsp;66</a></div>
-          </div>
-
-          <div class="c-row">
-            <span class="c-icon" aria-hidden="true">✉</span>
-            <div><a href="mailto:contact@librairiegodon.com">contact@librairiegodon.com</a></div>
-          </div>
-
-          <div class="c-row">
-            <span class="c-icon" aria-hidden="true">🕐</span>
-            <div>
-              <strong>Sur rendez-vous uniquement</strong>
-            </div>
-          </div>
-
-          <p class="c-notice">
-            Conditions de vente conformes aux usages du SLAM et aux règlements de la LILA.
-            <br><br>
-            Nous sommes acheteurs de livres anciens et modernes de qualité, à l'unité, en lot ou en bibliothèque complète. <strong>Déplacement toutes régions.</strong>
-          </p>
-        </div>
-
-        <!-- Bouton Contact -->
-        <div class="rev rev-d1" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 3rem 2rem; background: var(--white); border: 1px solid rgba(0,0,0,0.03); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.02);">
-          <h3 style="font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 1rem; color: var(--ink);">Envoyez-nous un e-mail</h3>
-          <p style="color: var(--ink-mid); font-size: .95rem; margin-bottom: 2rem; line-height: 1.6;">Pour toute demande d'expertise, de rendez-vous ou de renseignements, n'hésitez pas à nous écrire directement depuis votre messagerie.</p>
-          <a href="mailto:contact@librairiegodon.com" class="btn btn-gold" style="font-size: .85rem; padding: 1rem 2.5rem;">Écrire à contact@librairiegodon.com &rarr;</a>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- ======================================================
-     FOOTER
-====================================================== -->
-<footer id="site-footer" role="contentinfo">
-  <div class="footer-inner">
-    <p class="footer-name">Librairie Godon</p>
-    <nav class="footer-links" aria-label="Liens secondaires">
-      <a href="#">Accueil</a>
-      <span class="s" aria-hidden="true">|</span>
-      <a href="#librairie">La Librairie</a>
-      <span class="s" aria-hidden="true">|</span>
-      <a href="#actualites">Nos Catalogues</a>
-      <span class="s" aria-hidden="true">|</span>
-      <a href="#contact">Contact</a>
-      <span class="s" aria-hidden="true">|</span>
-      <a href="#">Mentions légales</a>
-    </nav>
-    <p class="footer-copy">© Librairie Godon — Tous droits réservés</p>
-  </div>
-</footer>
-
-<!-- ======================================================
-     NEWSLETTER POPUP
-====================================================== -->
-<div class="nl-overlay" id="nlOverlay" role="dialog" aria-modal="true" aria-labelledby="nlTitle">
-  <div class="nl-modal">
-    <button class="nl-close" id="nlCloseBtn" aria-label="Fermer">&#215;</button>
-
-    <div class="nl-deco" aria-hidden="true">
-      <span></span><span></span><span></span>
-    </div>
-
-    <div id="nlFormWrap">
-      <h3 id="nlTitle">La Newsletter Godon</h3>
-      <p>
-        Recevez notre <em>newsletter bimestrielle</em> directement dans votre boîte mail —
-        actualités de la librairie, nouvelles acquisitions et dates de salons.
-      </p>
-      <div class="nl-form" style="align-items: center;">
-        <a href="mailto:librairie.godon@gmail.com?subject=Inscription newsletter" class="btn btn-gold">S'inscrire à la newsletter →</a>
-      </div>
-      <p class="nl-legal">Vos données ne sont jamais partagées. Désinscription possible à tout moment.</p>
-    </div>
-
-    <div class="nl-success" id="nlSuccess">
-      <div class="check" aria-hidden="true">✦</div>
-      <h3>Merci !</h3>
-      <p>Vous êtes bien inscrit·e à notre newsletter bimestrielle.</p>
-    </div>
-
-  </div>
-</div>
-
-<!-- ======================================================
-     JAVASCRIPT — vanilla, no jQuery
-====================================================== -->
-<script src="js/main.js" defer></script>
-
-</body>
-</html>
+  /* --- Catalogue subscribe form (section) --- */
+  const catForm = document.getElementById('catSubscribeForm');
+  if (catForm) {
+    catForm.addEventListener('submit', e => {
+      e.preventDefault();
+      const email = catForm.querySelector('input[type="email"]').value.trim();
+      if (!email) return;
+      const subject = encodeURIComponent('Demande de catalogue — Librairie Godon');
+      const body    = encodeURIComponent('Bonjour,\n\nJe souhaite recevoir vos catalogues (L\'Amusement d\'un Lillois / Le Non Livre).\n\nMon adresse e-mail : ' + email + '\n\nCordialement.');
+      window.location.href = 'mailto:contact@librairiegodon.com?subject=' + subject + '&body=' + body;
+      const btn = catForm.querySelector('button');
+      btn.textContent = '✓ Demande envoyée !';
+      btn.disabled = true;
+      catForm.querySelector('input').disabled = true;
+    });
+  }
