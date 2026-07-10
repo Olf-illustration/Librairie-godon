@@ -64,10 +64,9 @@
 <!-- ======================================================
      HERO — Animation à l'encre (hommage au GIF original)
 ====================================================== -->
-<section id="hero" aria-label="Page d'accueil animée">
+<section id="hero" aria-label="Page d'accueil">
   <div class="hero-animation-bg">
-    <!-- Placez votre fichier d'animation ici (ex: gif, webp ou mp4) -->
-    <img src="images/animation-hero.gif" alt="Animation Librairie Godon">
+    <img src="images/hero-image.jpg" alt="Librairie Godon">
   </div>
 </section>
 
@@ -87,64 +86,25 @@
 
       <div class="lib-grid">
 
-        <!-- Diaporama -->
-        <div class="slideshow rev rev-d1" id="libShow" aria-label="Galerie photos de la librairie">
-
-          <div class="slide on" role="img" aria-label="Intérieur de la Librairie Godon, Vieux Lille">
-            <div class="slide-ph">
-              <svg width="48" height="56" viewBox="0 0 48 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <rect x="4" y="2" width="32" height="44" rx="2" stroke="#b8956a" stroke-width="1.5"/>
-                <rect x="8" y="6" width="32" height="44" rx="2" stroke="#b8956a" stroke-width="1" opacity=".4"/>
-                <line x1="4" y1="8" x2="36" y2="8" stroke="#b8956a" stroke-width="1" opacity=".3"/>
-                <line x1="4" y1="14" x2="36" y2="14" stroke="#b8956a" stroke-width=".5" opacity=".2"/>
-                <line x1="4" y1="18" x2="28" y2="18" stroke="#b8956a" stroke-width=".5" opacity=".2"/>
-                <line x1="4" y1="22" x2="30" y2="22" stroke="#b8956a" stroke-width=".5" opacity=".2"/>
-              </svg>
-              <span>Librairie Godon<br>Vieux Lille</span>
-            </div>
+        <!-- Photo de la librairie -->
+        <div class="slideshow rev rev-d1" id="libShow" aria-label="Photo de la librairie">
+          <div class="slide on" role="img" aria-label="Intérieur de la Librairie Godon">
+            <img src="images/librairie-photo.jpg" alt="Librairie Godon — livres anciens Lille">
           </div>
-
-          <!-- Les slides suivantes chargent les images réelles du site -->
-          <div class="slide" role="img" aria-label="Fonds de la librairie">
-            <img
-              src="https://www.librairiegodon.com/userfiles/images/librairie/librairie.jpg"
-              alt="Librairie Godon — livres anciens Lille"
-              loading="lazy"
-              onerror="this.parentElement.querySelector('.slide-ph') && (this.style.display='none'); this.nextElementSibling && (this.nextElementSibling.style.display='flex');"
-            >
-          </div>
-          <div class="slide" role="img" aria-label="Rayonnages de la librairie">
-            <img
-              src="https://www.librairiegodon.com/userfiles/images/librairie/librairie4.jpg"
-              alt="Librairie Godon — livres d'occasion Lille"
-              loading="lazy"
-            >
-          </div>
-          <div class="slide" role="img" aria-label="Livres illustrés">
-            <img
-              src="https://www.librairiegodon.com/userfiles/images/librairie/librairie5.jpg"
-              alt="Librairie Godon — livres illustrés Lille"
-              loading="lazy"
-            >
-          </div>
-
-        </div><!-- /slideshow -->
+        </div><!-- /photo -->
 
         <!-- Texte -->
         <div class="lib-text rev rev-d2">
-          <h3>Sylviane &amp; Jérôme Godon — Lille (Nord)</h3>
+          <h3>Sylviane &amp; Jérôme Godon</h3>
 
-          <p>La Librairie Godon est installée à Lille depuis <strong>1987</strong>, d'abord rue Sainte-Anne, puis rue de la Barre jusqu'en 1997, pour arriver ensuite <strong>rue Masurel</strong>, au cœur du vieux Lille, à deux pas de la cathédrale Notre-Dame de la Treille.</p>
+          <p>Fondée en 1987, la Librairie Godon était installée à Lille, d'abord rue Sainte-Anne, puis rue de la Barre jusqu'en 1997, pour arriver ensuite <strong>rue Masurel</strong>, au cœur du vieux Lille, à deux pas de la cathédrale Notre-Dame de la Treille.</p>
 
-          <p>Dans une ambiance atypique, nous vous proposons un vaste choix de livres et documents anciens et modernes, éditions originales, livres illustrés, du&nbsp;XVI<sup>e</sup> au&nbsp;XX<sup>e</sup>&nbsp;siècle, à tous les prix et sur tous les sujets, ainsi que des <strong>gravures décoratives</strong> et de nombreux <strong>plans et cartes anciennes</strong> des Hauts-de-France et de Belgique.</p>
+          <p>La librairie a fermé définitivement en juin 2024. <strong>Nous sommes toujours en activité</strong> sur la métropole Lilloise mais <strong>nous recevons maintenant uniquement sur rendez-vous.</strong></p>
 
-          <p>Nous éditons trois fois par an le catalogue <em>«&nbsp;L'Amusement d'un Lillois&nbsp;»</em>, envoyé gratuitement sur demande, et le catalogue <em>«&nbsp;Le Non Livre&nbsp;»</em>, consacré aux documents éphémères, paraissant tous les deux ans.</p>
+          <p>Nous éditons une fois par an le catalogue <em>«&nbsp;L'Amusement d'un Lillois&nbsp;»</em>, envoyé gratuitement sur demande, et le catalogue <em>«&nbsp;Le Non Livre&nbsp;»</em>, consacré aux documents éphémères, qui paraît quant à lui tous les deux ou trois ans.</p>
 
-          <p>Nous participons chaque année, depuis sa création, au <strong>Salon du Livre Ancien de Lille</strong> ainsi qu'au salon salle Olympe de Gouges à Paris en novembre.</p>
-
-          <p style="margin-top:.5rem;">Nous sommes <strong>acheteurs</strong> aux meilleures conditions, à l'unité, en lot ou en bibliothèque complète. Déplacement toutes régions.</p>
-
-          <span class="rdv-tag">★&nbsp; Sur rendez-vous uniquement depuis 2024</span>
+          <p><strong>Nous publions deux fois par mois une petite liste d’une dizaine de livres et documents sous le format d’une newsletter que vous êtes libres de rejoindre.</strong><br>
+          Nous participons à Paris, en février et octobre, au salon Bibliomania.</p>
         </div>
 
       </div><!-- /lib-grid -->
@@ -183,16 +143,16 @@
           <div class="pub-cover">
             <div class="pub-cover-inner"><span>L'Amusement<br>d'un Lillois</span></div>
           </div>
-          <span class="pub-freq">3 numéros par an</span>
+          <span class="pub-freq">1 numéro par an</span>
           <h4>L'Amusement d'un Lillois</h4>
-          <p>Catalogue de vente par correspondance consacré à nos dernières acquisitions — livres anciens, éditions originales, gravures et cartographies. Envoyé gratuitement sur simple demande.</p>
+          <p>Catalogue de vente par correspondance consacré à nos dernières acquisitions — bibliophilie, éditions originales, gravures et cartographies. Envoyé gratuitement sur simple demande.</p>
         </div>
 
         <div class="pub-card rev rev-d2">
           <div class="pub-cover">
             <div class="pub-cover-inner"><span>Le<br>Non Livre</span></div>
           </div>
-          <span class="pub-freq">Tous les deux ans</span>
+          <span class="pub-freq">Tous les 2 ou 3 ans</span>
           <h4>Le Non Livre</h4>
           <p>Catalogue entièrement consacré aux documents éphémères — affiches, menus, faire-parts, imagerie populaire et papiers anciens. Une publication unique en son genre.</p>
         </div>
@@ -201,10 +161,9 @@
 
       <div class="subscribe-block rev">
         <p>Recevez nos catalogues gratuitement — inscrivez-vous à notre <em>newsletter bimestrielle</em></p>
-        <form class="subscribe-form" id="catSubscribeForm" novalidate>
-          <input type="email" name="email" placeholder="Votre adresse e-mail" required aria-label="E-mail">
-          <button type="submit" class="btn btn-gold">S'inscrire →</button>
-        </form>
+        <div class="subscribe-form">
+          <a href="mailto:librairie.godon@gmail.com?subject=Inscription newsletter" class="btn btn-gold">S'inscrire →</a>
+        </div>
       </div>
 
     </div>
@@ -251,47 +210,12 @@
           </p>
         </div>
 
-        <!-- Formulaire -->
-        <form class="rev rev-d1" action="#" method="POST" novalidate aria-label="Formulaire de contact">
-          <div class="form-row-2">
-            <div class="form-group">
-              <label for="nom">Nom <span aria-hidden="true">*</span></label>
-              <input type="text" id="nom" name="nom" autocomplete="family-name" required>
-            </div>
-            <div class="form-group">
-              <label for="prenom">Prénom</label>
-              <input type="text" id="prenom" name="prenom" autocomplete="given-name">
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label for="email">E-mail <span aria-hidden="true">*</span></label>
-            <input type="email" id="email" name="email" autocomplete="email" required>
-          </div>
-
-          <div class="form-group">
-            <label for="sujet">Objet</label>
-            <select id="sujet" name="sujet">
-              <option value="">— Sélectionner —</option>
-              <option value="rdv">Prise de rendez-vous</option>
-              <option value="expertise">Demande d'expertise</option>
-              <option value="catalogue">Demande de catalogue</option>
-              <option value="achat">Proposition de vente</option>
-              <option value="newsletter">Inscription newsletter</option>
-              <option value="autre">Autre</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="message">Message <span aria-hidden="true">*</span></label>
-            <textarea id="message" name="message" required></textarea>
-          </div>
-
-          <div class="form-foot">
-            <span class="form-note">* Champs obligatoires</span>
-            <button type="submit" class="btn btn-gold">Envoyer &rarr;</button>
-          </div>
-        </form>
+        <!-- Bouton Contact -->
+        <div class="rev rev-d1" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 3rem 2rem; background: var(--white); border: 1px solid rgba(0,0,0,0.03); border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.02);">
+          <h3 style="font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 1rem; color: var(--ink);">Envoyez-nous un e-mail</h3>
+          <p style="color: var(--ink-mid); font-size: .95rem; margin-bottom: 2rem; line-height: 1.6;">Pour toute demande d'expertise, de rendez-vous ou de renseignements, n'hésitez pas à nous écrire directement depuis votre messagerie.</p>
+          <a href="mailto:contact@librairiegodon.com" class="btn btn-gold" style="font-size: .85rem; padding: 1rem 2.5rem;">Écrire à contact@librairiegodon.com &rarr;</a>
+        </div>
 
       </div>
     </div>
@@ -315,10 +239,6 @@
       <a href="#contact">Contact</a>
       <span class="s" aria-hidden="true">|</span>
       <a href="#">Mentions légales</a>
-      <span class="s" aria-hidden="true">|</span>
-      <a href="#">FR</a>
-      <span class="s" aria-hidden="true">/</span>
-      <a href="#">EN</a>
     </nav>
     <p class="footer-copy">© Librairie Godon — Tous droits réservés</p>
   </div>
@@ -341,10 +261,9 @@
         Recevez notre <em>newsletter bimestrielle</em> directement dans votre boîte mail —
         actualités de la librairie, nouvelles acquisitions et dates de salons.
       </p>
-      <form class="nl-form" id="nlForm" novalidate>
-        <input type="email" name="email" placeholder="Votre adresse e-mail" required autocomplete="email" aria-label="Adresse e-mail">
-        <button type="submit" class="btn btn-gold">S'inscrire à la newsletter →</button>
-      </form>
+      <div class="nl-form" style="align-items: center;">
+        <a href="mailto:librairie.godon@gmail.com?subject=Inscription newsletter" class="btn btn-gold">S'inscrire à la newsletter →</a>
+      </div>
       <p class="nl-legal">Vos données ne sont jamais partagées. Désinscription possible à tout moment.</p>
     </div>
 
