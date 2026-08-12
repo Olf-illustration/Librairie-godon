@@ -10,16 +10,20 @@
   const burger   = document.querySelector('.nav-burger');
   const navWrap  = document.getElementById('nav-links');
 
-  burger.addEventListener('click', () => {
-    const open = navWrap.classList.toggle('open');
-    burger.setAttribute('aria-expanded', open);
-  });
-  navWrap.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      navWrap.classList.remove('open');
-      burger.setAttribute('aria-expanded', 'false');
+  if (burger && navWrap) {
+    burger.addEventListener('click', () => {
+      const open = navWrap.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open);
     });
-  });
+  }
+  if (navWrap) {
+    navWrap.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navWrap.classList.remove('open');
+        if (burger) burger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
 
   /* --- Active nav highlight on scroll --- */
   const navLinks = document.querySelectorAll('.nav-link');
