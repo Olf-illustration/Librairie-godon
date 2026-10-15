@@ -407,13 +407,35 @@
       <p style="color: var(--ink-mid); font-size: .9rem; line-height: 1.5; margin-bottom: 0;">Pour toute demande d'expertise, prise de rendez-vous ou recherche d'ouvrage.</p>
     </div>
 
-    <!-- Message de succès -->
-    <div id="contactSuccessMsg" style="display: none; background: #e7faf0; color: #085229; border: 1px solid #13ce66; border-radius: 6px; padding: 1.2rem; text-align: center; margin-bottom: 1rem;">
-      <svg viewBox="0 0 512 512" style="width: 28px; height: 28px; fill: #13ce66; margin: 0 auto .6rem; display: block;">
-        <path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 464c-118.664 0-216-96.055-216-216 0-118.663 96.055-216 216-216 118.664 0 216 96.055 216 216 0 118.663-96.055 216-216 216zm141.63-274.961L217.15 376.071c-4.705 4.667-12.303 4.637-16.97-.068l-85.878-86.572c-4.667-4.705-4.637-12.303.068-16.97l8.52-8.451c4.705-4.667 12.303-4.637 16.97.068l68.976 69.533 163.441-162.13c4.705-4.667 12.303-4.637 16.97.068l8.451 8.52c4.668 4.705 4.637 12.303-.068 16.97z"/>
-      </svg>
-      <strong style="display: block; font-size: 1rem; margin-bottom: .3rem;">Message envoyé avec succès !</strong>
-      <span>Nous vous répondrons dans les plus brefs délais.</span>
+    <!-- Écran après validation : 100% direct, zéro tiers, zéro base de données -->
+    <div id="contactSuccessMsg" style="display: none; text-align: center; padding: .5rem 0;">
+      <div style="width: 48px; height: 48px; border-radius: 50%; background: #e7faf0; color: #085229; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.4rem;">✓</div>
+      <h4 style="font-family: var(--font-display); font-size: 1.35rem; font-style: italic; color: var(--ink); margin-bottom: .4rem;">Votre message est prêt</h4>
+      <p style="color: var(--ink-mid); font-size: .88rem; margin-bottom: 1.5rem; line-height: 1.5;">
+        Si votre messagerie ne s'est pas ouverte automatiquement, choisissez votre boîte mail ci-dessous :
+      </p>
+
+      <div style="display: flex; flex-direction: column; gap: .75rem; margin-bottom: 1.5rem;">
+        <a id="btnGmail" href="#" target="_blank" rel="noopener" class="btn" style="background: #ffffff; border: 1px solid #d5d5d5; color: #111; justify-content: center; font-size: .85rem; padding: .75rem 1rem;">
+          <svg style="width: 16px; height: 16px; margin-right: 8px;" viewBox="0 0 24 24"><path fill="#EA4335" d="M12 12.713L2.4 6.3c-.25.32-.4.72-.4 1.16v11.08c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7.46c0-.44-.15-.84-.4-1.16L12 12.713z"/><path fill="#FBBC05" d="M21.6 4.96C21.2 4.38 20.65 4 20 4H4c-.65 0-1.2.38-1.6.96L12 11.287l9.6-6.327z"/></svg>
+          Ouvrir dans <strong>Gmail</strong>
+        </a>
+        <a id="btnOutlook" href="#" target="_blank" rel="noopener" class="btn" style="background: #ffffff; border: 1px solid #d5d5d5; color: #111; justify-content: center; font-size: .85rem; padding: .75rem 1rem;">
+          <svg style="width: 16px; height: 16px; margin-right: 8px;" viewBox="0 0 24 24"><path fill="#0078D4" d="M22 6v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2h16c1.1 0 2 .9 2 2zm-2 0l-8 5-8-5v12h16V6zm-8 3l8-5H4l8 5z"/></svg>
+          Ouvrir dans <strong>Outlook / Hotmail</strong>
+        </a>
+        <button type="button" id="btnCopyMsg" class="btn btn-gold" style="justify-content: center; font-size: .85rem; padding: .75rem 1rem; cursor: pointer;">
+          📋 Copier l'adresse et le message
+        </button>
+      </div>
+
+      <div id="copyFeedback" style="display: none; background: #e7faf0; color: #085229; border: 1px solid #13ce66; border-radius: 4px; padding: .6rem; font-size: .82rem; margin-bottom: 1rem;">
+        ✓ Adresse et message copiés dans le presse-papier !
+      </div>
+
+      <button type="button" id="btnBackToForm" style="background: none; border: none; font-size: .8rem; color: var(--ink-soft); text-decoration: underline; cursor: pointer;">
+        &larr; Modifier le message
+      </button>
     </div>
 
     <!-- Formulaire de contact -->

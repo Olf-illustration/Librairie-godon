@@ -157,12 +157,20 @@
   }
 
   if (contactForm) {
-    contactForm.addEventListener('submit', async e => {
+    const btnGmail      = document.getElementById('btnGmail');
+    const btnOutlook    = document.getElementById('btnOutlook');
+    const btnCopyMsg    = document.getElementById('btnCopyMsg');
+    const copyFeedback  = document.getElementById('copyFeedback');
+    const btnBackToForm = document.getElementById('btnBackToForm');
+
+    let currentCopyText = '';
+
+    contactForm.addEventListener('submit', e => {
       e.preventDefault();
-      const nom = document.getElementById('c_nom').value.trim();
-      const email = document.getElementById('c_email').value.trim();
-      const tel = document.getElementById('c_tel').value.trim();
-      const sujet = document.getElementById('c_sujet').value;
+      const nom     = document.getElementById('c_nom').value.trim();
+      const email   = document.getElementById('c_email').value.trim();
+      const tel     = document.getElementById('c_tel').value.trim();
+      const sujet   = document.getElementById('c_sujet').value;
       const message = document.getElementById('c_message').value.trim();
 
       if (!nom || !email || !sujet || !message) {
@@ -174,62 +182,46 @@
       }
       if (contactError) contactError.style.display = 'none';
 
-      const submitBtn = document.getElementById('contactSubmitBtn');
-      const origText = submitBtn.textContent;
-      submitBtn.textContent = 'Envoi en cours...';
-      submitBtn.disabled = true;
+      const subjectRaw = `[Librairie Godon] ${sujet} — ${nom}`;
+      const bodyRaw    = `Bonjour,\n\nJe vous contacte concernant : ${sujet}\n\nNom : ${nom}\nEmail : ${email}\nTéléphone : ${tel || 'Non renseigné'}\n\nMessage :\n${message}\n\nCordialement,\n${nom}`;
 
-      try {
-        const response = await fetch("https://formsubmit.co/ajax/contact@librairiegodon.com", {
-          method: "POST",
-          headers: { 
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({
-            Nom: nom,
-            Email: email,
-            Telephone: tel || 'Non renseigné',
-            Objet: sujet,
-            Message: message,
-            _subject: `[Librairie Godon] Message de ${nom} : ${sujet}`
-          })
-        });
+      const subjectEnc = encodeURIComponent(subjectRaw);
+      const bodyEnc    = encodeURIComponent(bodyRaw);
 
-        if (response.ok) {
-          contactForm.style.display = 'none';
-          contactSuccess.style.display = 'block';
-          setTimeout(() => {
-            closeContact();
-            setTimeout(() => {
-              contactForm.reset();
-              contactForm.style.display = 'block';
-              contactSuccess.style.display = 'none';
-              submitBtn.textContent = origText;
-              submitBtn.disabled = false;
-            }, 500);
-          }, 3500);
-        } else {
-          throw new Error('Erreur transmission');
-        }
-      } catch (err) {
-        // Fallback transparent : préparation dans la messagerie
-        const subjectEnc = encodeURIComponent(`[Librairie Godon] ${sujet} — ${nom}`);
-        const bodyEnc = encodeURIComponent(`Bonjour,\n\nNom : ${nom}\nEmail : ${email}\nTéléphone : ${tel || 'Non renseigné'}\nObjet : ${sujet}\n\nMessage :\n${message}\n\nCordialement.`);
-        window.location.href = `mailto:contact@librairiegodon.com?subject=${subjectEnc}&body=${bodyEnc}`;
-        contactForm.style.display = 'none';
-        contactSuccess.style.display = 'block';
-        contactSuccess.innerHTML = '<strong style="display: block; font-size: 1rem; margin-bottom: .3rem;">Message préparé !</strong><span>Si votre logiciel de messagerie s\'est ouvert, vous pouvez confirmer l\'envoi. Vous pouvez également nous écrire directement à contact@librairiegodon.com.</span>';
-        setTimeout(() => {
-          closeContact();
-          setTimeout(() => {
-            contactForm.reset();
-            contactForm.style.display = 'block';
-            contactSuccess.style.display = 'none';
-            submitBtn.textContent = origText;
-            submitBtn.disabled = false;
-          }, 500);
-        }, 4500);
-      }
+      // Liens directs vers les webmails et application de messagerie
+      const mailtoUrl  = `mailto:contact@librairiegodon.com?subject=${subjectEnc}&body=${bodyEnc}`;
+      const gmailUrl   = `https://mail.google.com/mail/?view=cm&fs=1&to=contact@librairiegodon.com&su=${subjectEnc}&body=${bodyEnc}`;
+      const outlookUrl = `https://outlook.live.com/mail/0/deeplink/compose?to=contact@librairiegodon.com&subject=${subjectEnc}&body=${bodyEnc}`;
+
+      if (btnGmail)   btnGmail.href   = gmailUrl;
+      if (btnOutlook) btnOutlook.href = outlookUrl;
+
+      currentCopyText = `À : contact@librairiegodon.com\nObjet : ${subjectRaw}\n\n${bodyRaw}`;
+
+      // Affiche l'écran d'options dans la modale
+      contactForm.style.display = 'none';
+      if (contactSuccess) contactSuccess.style.display = 'block';
+      if (copyFeedback)   copyFeedback.style.display = 'none';
+
+      // Déclenche l'ouverture native par mailto (fonctionne immédiatement si une appli mail est présente)
+      window.location.href = mailtoUrl;
     });
+
+    // Copier le message et l'adresse dans le presse-papier
+    if (btnCopyMsg) {
+      btnCopyMsg.addEventListener('click', () => {
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(currentCopyText).then(() => {
+          if (copyFeedback) copyFeedback.style.display = 'block';
+        });
+      });
+    }
+
+    // Bouton pour revenir et modifier le formulaire
+    if (btnBackToForm) {
+      btnBackToForm.addEventListener('click', () => {
+        if (contactSuccess) contactSuccess.style.display = 'none';
+        contactForm.style.display = 'block';
+      });
+    }
   }
