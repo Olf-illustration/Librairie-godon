@@ -219,7 +219,7 @@
       </div>
 
       <div class="subscribe-block rev">
-        <p>Recevez nos catalogues gratuitement — inscrivez-vous à notre <em>newsletter bimestrielle</em></p>
+        <p>Recevez nos catalogues gratuitement — inscrivez-vous à notre <em>newsletter bimensuelle</em></p>
         <div class="subscribe-form">
           <button type="button" class="btn btn-gold nl-trigger-btn">S'inscrire à la newsletter →</button>
         </div>
@@ -269,9 +269,10 @@
 
         <!-- Bouton Contact -->
         <div class="rev rev-d1" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2.5rem 2rem; background: #ffffff; border: 1px solid #e5e5e5; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); overflow: hidden;">
-          <h3 style="font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 1rem; color: var(--ink);">Envoyez-nous un e-mail</h3>
-          <p style="color: var(--ink-mid); font-size: .95rem; margin-bottom: 2rem; line-height: 1.6;">Pour toute demande d'expertise, de rendez-vous ou de renseignements, n'hésitez pas à nous écrire directement depuis votre messagerie.</p>
-          <a href="mailto:contact@librairiegodon.com" class="btn btn-gold" style="font-size: .85rem; padding: 1rem 1.5rem; width: 100%; text-align: center; justify-content: center; white-space: normal;">Nous écrire par e-mail &rarr;</a>
+          <h3 style="font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 1rem; color: var(--ink);">Envoyez-nous un message</h3>
+          <p style="color: var(--ink-mid); font-size: .95rem; margin-bottom: 2rem; line-height: 1.6;">Pour toute demande d'expertise, prise de rendez-vous ou recherche d'ouvrage, contactez-nous via notre formulaire direct.</p>
+          <button type="button" id="contactOpenBtn" class="btn btn-gold contact-trigger-btn" style="font-size: .85rem; padding: 1rem 1.5rem; width: 100%; text-align: center; justify-content: center; white-space: normal; cursor: pointer;">Envoyez-nous un message &rarr;</button>
+          <a href="mailto:contact@librairiegodon.com" style="margin-top: 1.2rem; font-size: .82rem; color: var(--ink-soft); text-decoration: underline;">Ou directement à contact@librairiegodon.com</a>
         </div>
 
       </div>
@@ -391,6 +392,80 @@
         </form>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- ======================================================
+     CONTACT POP-IN (MODALE)
+====================================================== -->
+<div class="nl-overlay" id="contactOverlay" role="dialog" aria-modal="true" aria-labelledby="contactTitle">
+  <div class="nl-modal" style="max-width: 540px;">
+    <button class="nl-close" id="contactCloseBtn" aria-label="Fermer">&#215;</button>
+
+    <div style="text-align: center; margin-bottom: 1.5rem;">
+      <h3 id="contactTitle" style="font-family: var(--font-display); font-size: 1.6rem; font-style: italic; color: var(--ink); margin-bottom: .4rem;">Envoyez-nous un message</h3>
+      <p style="color: var(--ink-mid); font-size: .9rem; line-height: 1.5; margin-bottom: 0;">Pour toute demande d'expertise, prise de rendez-vous ou recherche d'ouvrage.</p>
+    </div>
+
+    <!-- Message de succès -->
+    <div id="contactSuccessMsg" style="display: none; background: #e7faf0; color: #085229; border: 1px solid #13ce66; border-radius: 6px; padding: 1.2rem; text-align: center; margin-bottom: 1rem;">
+      <svg viewBox="0 0 512 512" style="width: 28px; height: 28px; fill: #13ce66; margin: 0 auto .6rem; display: block;">
+        <path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 464c-118.664 0-216-96.055-216-216 0-118.663 96.055-216 216-216 118.664 0 216 96.055 216 216 0 118.663-96.055 216-216 216zm141.63-274.961L217.15 376.071c-4.705 4.667-12.303 4.637-16.97-.068l-85.878-86.572c-4.667-4.705-4.637-12.303.068-16.97l8.52-8.451c4.705-4.667 12.303-4.637 16.97.068l68.976 69.533 163.441-162.13c4.705-4.667 12.303-4.637 16.97.068l8.451 8.52c4.668 4.705 4.637 12.303-.068 16.97z"/>
+      </svg>
+      <strong style="display: block; font-size: 1rem; margin-bottom: .3rem;">Message envoyé avec succès !</strong>
+      <span>Nous vous répondrons dans les plus brefs délais.</span>
+    </div>
+
+    <!-- Formulaire de contact -->
+    <form id="contactForm" novalidate>
+      <div class="form-row-2">
+        <div class="form-group">
+          <label for="c_nom">Nom &amp; Prénom <span aria-hidden="true" style="color: #c5a059;">*</span></label>
+          <input type="text" id="c_nom" name="nom" autocomplete="name" required placeholder="Ex. : Jean Dupont">
+        </div>
+        <div class="form-group">
+          <label for="c_email">Adresse e-mail <span aria-hidden="true" style="color: #c5a059;">*</span></label>
+          <input type="email" id="c_email" name="email" autocomplete="email" required placeholder="Ex. : jean@dupont.fr">
+        </div>
+      </div>
+
+      <div class="form-row-2">
+        <div class="form-group">
+          <label for="c_tel">Téléphone</label>
+          <input type="tel" id="c_tel" name="tel" autocomplete="tel" placeholder="Ex. : 06 12 34 56 78">
+        </div>
+        <div class="form-group">
+          <label for="c_sujet">Objet <span aria-hidden="true" style="color: #c5a059;">*</span></label>
+          <select id="c_sujet" name="sujet" required>
+            <option value="">— Choisir un sujet —</option>
+            <option value="Demande d'expertise">Demande d'expertise</option>
+            <option value="Prise de rendez-vous">Prise de rendez-vous</option>
+            <option value="Proposition de vente">Proposition de vente</option>
+            <option value="Demande de catalogue">Demande de catalogue</option>
+            <option value="Autre renseignement">Autre renseignement</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="c_message">Votre message <span aria-hidden="true" style="color: #c5a059;">*</span></label>
+        <textarea id="c_message" name="message" rows="4" required placeholder="Détaillez votre demande..."></textarea>
+      </div>
+
+      <div id="contactErrorMsg" style="display: none; background: #ffeded; color: #661d1d; border: 1px solid #ff4949; border-radius: 4px; padding: .8rem; margin-bottom: 1rem; font-size: .85rem; text-align: left;">
+        Veuillez remplir tous les champs obligatoires (*).
+      </div>
+
+      <div style="margin-top: .5rem;">
+        <button type="submit" id="contactSubmitBtn" class="btn btn-gold" style="width: 100%; justify-content: center; padding: .9rem 1.5rem; font-size: .9rem; cursor: pointer;">
+          Envoyer le message &rarr;
+        </button>
+      </div>
+
+      <div style="margin-top: 1.2rem; text-align: center; font-size: .78rem; color: var(--ink-soft); border-top: 1px solid #eee; padding-top: .9rem;">
+        Vous pouvez également nous joindre au <strong>06 88 22 22 66</strong> ou par email à <a href="mailto:contact@librairiegodon.com" style="color: var(--ink); text-decoration: underline;">contact@librairiegodon.com</a>
+      </div>
+    </form>
   </div>
 </div>
 
