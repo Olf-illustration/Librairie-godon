@@ -2,16 +2,16 @@
        VARIABLES & RESET
     ===================================================== */
     :root {
-      --cream:        #fdfdfd;
+      --cream:        #ffffff;
       --cream-dark:   #f5f5f5;
-      --cream-deeper: #ebebeb;
-      --ink:          #1a1a1a;
-      --ink-mid:      #404040;
-      --ink-soft:     #6b6b6b;
+      --cream-deeper: #e8e8e8;
+      --ink:          #111111;
+      --ink-mid:      #2e2e2e;
+      --ink-soft:     #5e5e5e;
       --gold:         #c5a059;
       --gold-light:   #d4b475;
-      --gold-pale:    #e8d5a7;
-      --black:        #0a0a0a;
+      --gold-pale:    #d9c294;
+      --black:        #000000;
       --white:        #ffffff;
 
       --font-body:    'Inter', sans-serif;
@@ -24,14 +24,19 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; }
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      overflow-x: hidden;
+      background: #ffffff !important;
+    }
 
     body {
       font-family: var(--font-body);
       font-size: 1rem;
       line-height: 1.75;
       color: var(--ink);
-      background: var(--cream);
+      background: #ffffff !important;
       overflow-x: hidden;
     }
 
@@ -68,16 +73,14 @@
        HEADER
     ===================================================== */
     #site-header {
-      background: rgba(250, 250, 250, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(26, 26, 26, 0.08);
+      background: #ffffff !important;
+      border-bottom: 1px solid #ebebeb;
       position: sticky; top: 0; z-index: 200;
-      transition: box-shadow var(--dur) var(--ease), background var(--dur) var(--ease);
+      transition: box-shadow var(--dur) var(--ease);
     }
     #site-header.scrolled { 
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05); 
-      background: rgba(250, 250, 250, 0.95);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04); 
+      background: #ffffff !important;
     }
 
     .header-top {
@@ -107,11 +110,11 @@
     .h-logos a { display: inline-block; }
     .h-logos img {
       height: 26px; width: auto;
-      opacity: .65;
+      opacity: 1 !important;
       transition: opacity var(--dur) var(--ease);
-      filter: sepia(.3);
+      filter: none !important;
     }
-    .h-logos img:hover { opacity: 1; }
+    .h-logos img:hover { opacity: .8; }
 
     .header-info { display: flex; flex-direction: column; }
     .hi-title { font-size: .65rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--ink); }
@@ -274,7 +277,8 @@
 
     .sec {
       padding: 4.5rem 0;
-      border-bottom: 1px solid var(--cream-dark);
+      background: #ffffff !important;
+      border-bottom: 1px solid #eeeeee;
     }
     .sec:last-child { border-bottom: none; }
 
@@ -383,7 +387,7 @@
       display: grid; grid-template-columns: repeat(2, minmax(0, 320px));
       gap: 2rem; justify-content: center;
       margin-top: 3.5rem; padding-top: 2.5rem;
-      border-top: 1px solid var(--cream-dark);
+      border-top: 1px solid #eeeeee;
     }
     .member-card {
       display: flex; flex-direction: column;
@@ -391,11 +395,11 @@
     }
     .member-card a { display: inline-flex; align-items: center; }
     .member-card img {
-      height: 36px; width: auto;
-      opacity: .65; filter: sepia(.2);
-      transition: opacity var(--dur) var(--ease), filter var(--dur) var(--ease);
+      height: 38px; width: auto;
+      opacity: 1 !important; filter: none !important;
+      transition: opacity var(--dur) var(--ease);
     }
-    .member-card:hover img { opacity: 1; filter: none; }
+    .member-card:hover img { opacity: .8; }
     .member-card p { font-size: .8rem; color: var(--ink-soft); line-height: 1.5; }
     .member-card strong { color: var(--ink-mid); }
 
@@ -447,16 +451,16 @@
     .pub-card {
       display: flex; flex-direction: column; align-items: center;
       text-align: center; padding: 2.5rem 2rem;
-      border: 1px solid rgba(0,0,0,0.03);
+      border: 1px solid #e5e5e5;
       border-radius: 12px;
       background: var(--white);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
       transition: all var(--dur) var(--ease);
     }
     .pub-card:hover {
-      border-color: var(--gold-pale);
-      box-shadow: 0 15px 40px rgba(140,112,69,0.12);
-      transform: translateY(-5px);
+      border-color: var(--gold);
+      box-shadow: 0 10px 30px rgba(197,160,89,0.12);
+      transform: translateY(-4px);
     }
     .pub-cover {
       width: 72px; height: 96px;
@@ -492,7 +496,7 @@
     /* Subscribe block */
     .subscribe-block {
       margin-top: 3rem; padding-top: 2.5rem;
-      border-top: 1px solid var(--cream-dark);
+      border-top: 1px solid #eeeeee;
       text-align: center;
     }
     .subscribe-block p {
@@ -619,10 +623,10 @@
     .contact-info {
       padding: 2.5rem;
       background: var(--white);
-      border: 1px solid rgba(0,0,0,0.03);
+      border: 1px solid #e5e5e5;
       border-top: 3px solid var(--gold);
       border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
     }
     .contact-info h3 {
       font-family: var(--font-display);
@@ -755,71 +759,41 @@
       opacity: 1; pointer-events: all;
     }
     .nl-modal {
-      background: var(--cream);
-      max-width: 480px; width: 100%;
-      padding: 3rem 2.5rem 2.5rem;
+      background: var(--white);
+      max-width: 500px; width: 100%;
+      padding: 2.5rem 2rem 2rem;
       position: relative;
       border-top: 3px solid var(--gold);
       border-radius: 12px;
       transform: translateY(20px);
       transition: transform .4s var(--ease);
       box-shadow: 0 24px 60px rgba(0,0,0,.25);
+      max-height: 90vh;
+      overflow-y: auto;
     }
     .nl-overlay.open .nl-modal {
       transform: translateY(0);
     }
     .nl-close {
-      position: absolute; top: 1rem; right: 1.2rem;
+      position: absolute; top: .8rem; right: 1rem;
       background: none; border: none; cursor: pointer;
-      font-size: 1.3rem; color: var(--ink-soft); line-height: 1;
+      font-size: 1.8rem; color: var(--ink-soft); line-height: 1;
       transition: color var(--dur) var(--ease);
+      z-index: 10;
     }
     .nl-close:hover { color: var(--ink); }
-    .nl-deco {
-      display: flex; flex-direction: column; align-items: center;
-      gap: .3rem; margin-bottom: 1.5rem;
+
+    .nl-modal #sib-container {
+      background: transparent !important;
+      padding: 0 !important;
     }
-    .nl-deco span {
-      display: block; background: var(--gold-pale);
-      transform-origin: center;
+    .nl-modal .sib-form-block__button {
+      transition: opacity var(--dur) var(--ease);
     }
-    .nl-deco span:nth-child(1) { width: 22px; height: 1px; }
-    .nl-deco span:nth-child(2) { width: 80px; height: 1px; }
-    .nl-deco span:nth-child(3) { width: 22px; height: 1px; }
-    .nl-modal h3 {
-      font-family: var(--font-display);
-      font-size: 1.5rem; font-weight: 400; font-style: italic;
-      text-align: center; margin-bottom: .6rem; color: var(--black);
+    .nl-modal .sib-form-block__button:hover {
+      opacity: .9;
     }
-    .nl-modal p {
-      font-size: .88rem; color: var(--ink-mid); text-align: center;
-      line-height: 1.65; margin-bottom: 1.8rem;
-    }
-    .nl-modal p em { color: var(--gold); font-style: normal; font-weight: 600; }
-    .nl-form { display: flex; flex-direction: column; gap: .8rem; }
-    .nl-form input[type="email"] {
-      width: 100%; padding: .75rem 1rem;
-      background: var(--cream-dark);
-      border: 1px solid rgba(38,35,30,.18);
-      font-family: var(--font-body); font-size: .95rem; color: var(--ink);
-      transition: border-color var(--dur) var(--ease);
-    }
-    .nl-form input[type="email"]:focus {
-      outline: none; border-color: var(--gold); background: var(--white);
-    }
-    .nl-form input[type="email"]::placeholder { color: var(--ink-soft); }
-    .nl-form .btn { width: 100%; justify-content: center; }
-    .nl-legal {
-      font-size: .68rem; color: var(--ink-soft); text-align: center;
-      margin-top: .8rem; font-style: italic;
-    }
-    .nl-success {
-      text-align: center; display: none;
-    }
-    .nl-success .check {
-      font-size: 2rem; margin-bottom: .8rem; color: var(--gold);
-    }
-    .nl-success p { margin-bottom: 0; }
+
     .nl-trigger {
       background: none; border: none; cursor: pointer;
       font-family: var(--font-body); font-size: .68rem;

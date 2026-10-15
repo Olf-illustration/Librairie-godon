@@ -86,61 +86,39 @@
 
   initSlideshow('libShow', 4000);
 
-  /* --- Newsletter popup --- */
+  /* --- Newsletter Pop-in (Brevo) --- */
   const nlOverlay  = document.getElementById('nlOverlay');
-  const nlOpenBtn  = document.getElementById('nlOpenBtn');
   const nlCloseBtn = document.getElementById('nlCloseBtn');
-  const nlForm     = document.getElementById('nlForm');
-  const nlFormWrap = document.getElementById('nlFormWrap');
-  const nlSuccess  = document.getElementById('nlSuccess');
+  const nlTriggers = document.querySelectorAll('#nlOpenBtn, .nl-trigger-btn, a[href="#newsletter"]');
 
-  function openNl() {
+  function openNl(e) {
+    if (e) e.preventDefault();
+    if (!nlOverlay) return;
     nlOverlay.classList.add('open');
     document.body.style.overflow = 'hidden';
-    setTimeout(() => nlForm.querySelector('input').focus(), 80);
+    const emailInput = document.getElementById('EMAIL');
+    if (emailInput) setTimeout(() => emailInput.focus(), 200);
   }
+
   function closeNl() {
+    if (!nlOverlay) return;
     nlOverlay.classList.remove('open');
     document.body.style.overflow = '';
   }
 
-  nlOpenBtn.addEventListener('click', openNl);
-  nlCloseBtn.addEventListener('click', closeNl);
+  nlTriggers.forEach(btn => btn.addEventListener('click', openNl));
+  if (nlCloseBtn) nlCloseBtn.addEventListener('click', closeNl);
 
-  // Fermer en cliquant sur le fond
-  nlOverlay.addEventListener('click', e => { if (e.target === nlOverlay) closeNl(); });
-
-  // Fermer avec Échap
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNl(); });
-
-  // Soumission popup newsletter
-  nlForm.addEventListener('submit', e => {
-    e.preventDefault();
-    const email = nlForm.querySelector('input[type="email"]').value.trim();
-    if (!email) return;
-    // Ouvre le client mail avec l'email pré-rempli
-    const subject = encodeURIComponent('Inscription Newsletter — Librairie Godon');
-    const body    = encodeURIComponent('Bonjour,\n\nJe souhaite m\'inscrire à la newsletter bimestrielle de la Librairie Godon.\n\nMon adresse e-mail : ' + email + '\n\nCordialement.');
-    window.location.href = 'mailto:contact@librairiegodon.com?subject=' + subject + '&body=' + body;
-    // Affiche le message de confirmation
-    nlFormWrap.style.display = 'none';
-    nlSuccess.style.display  = 'block';
-    setTimeout(closeNl, 3200);
-  });
-
-  /* --- Catalogue subscribe form (section) --- */
-  const catForm = document.getElementById('catSubscribeForm');
-  if (catForm) {
-    catForm.addEventListener('submit', e => {
-      e.preventDefault();
-      const email = catForm.querySelector('input[type="email"]').value.trim();
-      if (!email) return;
-      const subject = encodeURIComponent('Demande de catalogue — Librairie Godon');
-      const body    = encodeURIComponent('Bonjour,\n\nJe souhaite recevoir vos catalogues (L\'Amusement d\'un Lillois / Le Non Livre).\n\nMon adresse e-mail : ' + email + '\n\nCordialement.');
-      window.location.href = 'mailto:contact@librairiegodon.com?subject=' + subject + '&body=' + body;
-      const btn = catForm.querySelector('button');
-      btn.textContent = '✓ Demande envoyée !';
-      btn.disabled = true;
-      catForm.querySelector('input').disabled = true;
+  // Fermer en cliquant sur le fond sombre
+  if (nlOverlay) {
+    nlOverlay.addEventListener('click', e => {
+      if (e.target === nlOverlay) closeNl();
     });
   }
+
+  // Fermer avec Échap
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && nlOverlay && nlOverlay.classList.contains('open')) {
+      closeNl();
+    }
+  });
