@@ -160,6 +160,7 @@
     const btnGmail      = document.getElementById('btnGmail');
     const btnOutlook    = document.getElementById('btnOutlook');
     const btnCopyMsg    = document.getElementById('btnCopyMsg');
+    const btnMailApp    = document.getElementById('btnMailApp');
     const copyFeedback  = document.getElementById('copyFeedback');
     const btnBackToForm = document.getElementById('btnBackToForm');
 
@@ -195,6 +196,7 @@
 
       if (btnGmail)   btnGmail.href   = gmailUrl;
       if (btnOutlook) btnOutlook.href = outlookUrl;
+      if (btnMailApp) btnMailApp.href = mailtoUrl;
 
       currentCopyText = `À : contact@librairiegodon.com\nObjet : ${subjectRaw}\n\n${bodyRaw}`;
 
@@ -202,9 +204,6 @@
       contactForm.style.display = 'none';
       if (contactSuccess) contactSuccess.style.display = 'block';
       if (copyFeedback)   copyFeedback.style.display = 'none';
-
-      // Déclenche l'ouverture native par mailto (fonctionne immédiatement si une appli mail est présente)
-      window.location.href = mailtoUrl;
     });
 
     // Copier le message et l'adresse dans le presse-papier
